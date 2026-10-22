@@ -1,0 +1,23 @@
+{
+  "name": "streamclip-frontend",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev -p 3000",
+    "build": "next build",
+    "start": "python3 -m http.server 3000 --directory out"
+  },
+  "dependencies": {
+    "next": "^15.5.28",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0",
+    "video.js": "^8.24.2",
+    "videojs-youtube": "^3.0.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.17.6",
+    "@types/react": "^19.1.4",
+    "@types/react-dom": "^19.1.5",
+    "typescript": "^5.8.3"
+  }
+}

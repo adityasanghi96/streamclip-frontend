@@ -1,0 +1,60 @@
+/*
+  Stream Clip theme
+  -----------------
+  Change colors, radii, and fonts here. Every UI surface reads these tokens.
+  Switch themes at runtime with document.documentElement.dataset.theme = "dark" | "light"
+  (also stored as streamclip-theme in localStorage). Add another [data-theme="..."]
+  block to create a new palette without touching component CSS.
+*/
+
+:root,
+[data-theme="dark"] {
+  color-scheme: dark;
+
+  --brand-cyan: #2ec5ff;
+  --brand-blue: #3b6cff;
+  --brand-violet: #7c5cff;
+  --brand-navy: #1e3a8a;
+  --brand-gradient: linear-gradient(135deg, var(--brand-cyan) 0%, var(--brand-blue) 46%, var(--brand-violet) 100%);
+
+  --bg: #070b16;
+  --bg-elevated: #0b1020;
+  --bg-card: #12182b;
+  --bg-input: #0a1020;
+  --bg-hero: #05070f;
+  --border: #24314d;
+  --text: #f4f7ff;
+  --text-muted: #9aa8c7;
+  --text-meta: #7d8aaa;
+  --accent: var(--brand-blue);
+  --accent-hover: var(--brand-violet);
+  --accent-soft: rgba(46, 197, 255, 0.16);
+  --danger: #e11d2e;
+  --danger-text: #ffb4b4;
+  --ok: #1f9a5c;
+  --ok-border: #1f7a46;
+  --ok-text: #d7ffe6;
+  --warn: #8a5a12;
+  --shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  --radius: 14px;
+  --radius-sm: 10px;
+  --font: "Segoe UI", system-ui, sans-serif;
+}
+
+[data-theme="light"] {
+  color-scheme: light;
+
+  --bg: #eef3ff;
+  --bg-elevated: #ffffff;
+  --bg-card: #ffffff;
+  --bg-input: #f4f7ff;
+  --bg-hero: #0b1020;
+  --border: #d5def2;
+  --text: #0f172a;
+  --text-muted: #4b5a78;
+  --text-meta: #64748b;
+  --accent-soft: rgba(59, 108, 255, 0.12);
+  --danger-text: #9f1239;
+  --ok-text: #14532d;
+  --shadow: 0 10px 28px rgba(30, 58, 138, 0.12);
+}
