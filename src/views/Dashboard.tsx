@@ -67,11 +67,17 @@ export function Dashboard() {
   const [accountWebhooks, setAccountWebhooks] = useState<Record<number, string>>({});
 
   const youtubeChannelCards = useMemo(() => {
+    const otherIds = new Set([
+      ...twitchAccounts.map((account) => account.externalId),
+      ...kickAccounts.map((account) => account.externalId),
+      ...linked.filter((channel) => channel.provider && channel.provider !== "youtube").map((channel) => channel.ytChannelId),
+    ]);
     const byId = new Map<
       string,
       { id: string; name: string; imageUrl: string; handle?: string | null; linked?: Channel }
     >();
     for (const channel of user?.googleYoutubeChannels ?? []) {
+      if (otherIds.has(channel.id)) continue;
       byId.set(channel.id, {
         id: channel.id,
         name: channel.name,
@@ -80,7 +86,7 @@ export function Dashboard() {
       });
     }
     for (const channel of linked) {
-      if ((channel.provider || "youtube") !== "youtube") continue;
+      if ((channel.provider || "youtube") !== "youtube" || otherIds.has(channel.ytChannelId)) continue;
       const existing = byId.get(channel.ytChannelId);
       byId.set(channel.ytChannelId, {
         id: channel.ytChannelId,
@@ -91,11 +97,11 @@ export function Dashboard() {
       });
     }
     return [...byId.values()];
-  }, [user, linked]);
+  }, [user, linked, twitchAccounts, kickAccounts]);
   const youtubeVisible = youtubeChannelCards.slice((ytPage - 1) * SETUP_PAGE, ytPage * SETUP_PAGE);
 
   async function loadLinked() {
-    const channelsRes = await api.myChannels(100, 0);
+    const channelsRes = await api.myChannels(100, 0, "youtube");
     setLinked(channelsRes.channels);
     setWebhooks(
       Object.fromEntries(channelsRes.channels.map((c) => [c.ytChannelId, c.discordWebhookUrl || ""]))

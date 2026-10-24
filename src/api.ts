@@ -71,9 +71,9 @@ export const api = {
       body: JSON.stringify({ accessToken }),
     }),
   me: () => request<{ user: User }>("/me"),
-  myChannels: (limit = 20, offset = 0) =>
+  myChannels: (limit = 20, offset = 0, provider?: LinkedAccount["provider"]) =>
     request<{ channels: Channel[]; total: number; limit: number; offset: number }>(
-      `/me/channels${qs({ limit, offset })}`
+      `/me/channels${qs({ limit, offset, provider })}`
     ),
   linkChannel: (ytChannelId: string) =>
     request<{ channel: Channel }>("/me/channels", {

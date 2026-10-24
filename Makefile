@@ -56,6 +56,9 @@ sync:
 			aws s3 cp "$$1" s3://$(BUCKET)/$$dest \
 				--cache-control "no-cache,no-store,must-revalidate" \
 				--content-type "text/html"; \
+			aws s3api put-object --bucket $(BUCKET) --key "$$dest/" --body "$$1" \
+				--cache-control "no-cache,no-store,must-revalidate" \
+				--content-type "text/html"; \
 		fi' _ {}
 
 invalidate:

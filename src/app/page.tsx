@@ -1,7 +1,7 @@
 import { Suspense } from "react";
-import Link from "next/link";
 import { Loader } from "../components/Brand";
 import { HomeCatalog } from "../components/HomeCatalog";
+import { HomeHeroActions } from "../components/HomeHeroActions";
 import { JsonLd } from "../components/JsonLd";
 import { loadHome } from "../data";
 import { parseHomeFilters } from "../query";
@@ -31,14 +31,7 @@ export default async function HomePage() {
           Streamers can optionally sign in with Google to connect their channels, capture clips from chat or native
           clip buttons, and share them here.
         </p>
-        <div className="hero-actions">
-          <a className="btn" href="#clips">
-            Browse clips
-          </a>
-          <Link className="btn secondary" href="/login">
-            Sign in with Google
-          </Link>
-        </div>
+        <HomeHeroActions />
       </div>
       <div className="about-grid" aria-label="What Stream Clip does">
         <article className="about-card">
